@@ -6,21 +6,27 @@
  * fotos y mensajes personales. ¡Todo se actualizará automáticamente en la página!
  */
 
-const CONFIG = {
+window.CONFIG = {
   // Nombres
   partnerName: "Yami", // Nombre de ella
   yourName: "Daniel",  // Tu nombre (cámbialo si prefieres un apodo)
 
   // Fechas clave (Formato: AAAA-MM-DDTHH:MM:SS)
   dates: {
-    // Fecha en que comenzó su relación
-    startDate: "2025-12-07T00:00:00",
+    // Fecha en que comenzó su relación (5:00 PM)
+    startDate: "2025-12-07T17:00:00",
     
-    // Fecha en que se tomó la pausa / se separaron
-    pauseDate: "2026-10-01T00:00:00",
+    // Fecha en que se tomó la pausa / se separaron (2:00 PM)
+    pauseDate: "2026-10-01T14:00:00",
     
     // Si decides preactivar el reinicio (false = comienza pausado, true = reanudado)
-    isReopened: false
+    isReopened: false,
+
+    // Frase exclusiva para la vela
+    candleQuote: "Una vela no pierde su luz solo porque se apague un momento; basta un pequeño destello para volver a iluminar todo.",
+
+    // Frase exclusiva para el reloj de tiempo
+    clockQuote: "El reloj se detuvo en una fecha, pero cada instante vivido a tu lado sigue latiendo en mi corazón."
   },
 
   // Número de WhatsApp para recibir su respuesta (opcional, en formato internacional sin espacios ni '+', ej: "5215512345678")
@@ -48,32 +54,55 @@ const CONFIG = {
     closing: "Con todo mi cariño siempre,"
   },
 
-  // Galería de momentos especiales
-  // Puedes reemplazar los links con fotos tuyas (poniéndolas en la misma carpeta o con URLs de internet)
+  // Galería de momentos especiales con fotografías reales
   memories: [
     {
-      title: "El día en que todo comenzó",
-      date: "07 de Diciembre, 2025",
-      description: "Esa mirada y esa conversación que me hicieron darme cuenta de que contigo todo era diferente.",
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=80"
+      id: 1,
+      title: "Pedaleando en el Bosque de Aragón",
+      date: "19 de Diciembre, 2025 • 3:06 PM",
+      badge: "Bosque de Aragón",
+      description: "Nuestra primera vez en el Bosque de Aragón. Pedaleando sin prisa entre los árboles, disfrutando de cada risa y dándome cuenta de que cualquier camino es el más bonito si tú vas a mi lado.",
+      image: "assets/images/foto1.jpeg"
     },
     {
-      title: "Nuestras risas interminables",
-      date: "Una tarde inolvidable",
-      description: "Cuando el tiempo volaba y cualquier lugar se convertía en el mejor del mundo solo porque estabas a mi lado.",
-      image: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=800&q=80"
+      id: 2,
+      title: "Mi lugar seguro en tus brazos",
+      date: "27 de Diciembre, 2025 • 7:00 PM",
+      badge: "PowerCenter Coacalco • Mi paz",
+      description: "Esa tarde en Coacalco donde el mundo se detuvo. Terminar el día cerquita de ti, con ese abrazo tuyo que me da toda la calma del universo.",
+      image: "assets/images/foto2.jpeg"
     },
     {
-      title: "Los pequeños detalles",
-      date: "Momentos cotidianos",
-      description: "Caminar tomados de la mano, compartir una comida, esos instantes sencillos que hoy valen un universo.",
-      image: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80"
+      id: 3,
+      title: "Nuestra tarde de plastilina y risas",
+      date: "27 de Diciembre, 2025 • 7:00 PM",
+      badge: "PowerCenter Coacalco • Creatividad",
+      description: "Esa misma tarde creando a la ranita y al pollito entre risas y ocurrencias. Son esos detalles sencillos y espontáneos contigo los que guardo como los tesoros más grandes.",
+      image: "assets/images/foto3.jpeg"
     },
     {
-      title: "Lugares que guardan tu sonrisa",
-      date: "Nuestro rincón favorito",
-      description: "Cada sitio al que fuimos quedó marcado con tu recuerdo y con las promesas que guardo en el alma.",
-      image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80"
+      id: 4,
+      title: "Bajo la sombra de Chapultepec",
+      date: "14 de Febrero, 2026 • 1:30 PM",
+      badge: "San Valentín en Chapultepec",
+      description: "Nuestro 14 de febrero recostados bajo los árboles de Chapultepec. Mirar el cielo a tu lado y sentir que no necesitaba nada más en el mundo, porque el mejor regalo eras tú.",
+      image: "assets/images/foto4.jpeg"
+    },
+    {
+      id: 5,
+      title: "Cómplices en el Museo Bimbo",
+      date: "20 de Abril, 2026 • 6:50 PM",
+      badge: "Museo Bimbo",
+      description: "Una visita diferente, dulce y llena de sonrisas. Pararnos frente al espejo a tomarnos esta foto y ver en tu mirada a mi compañera favorita de aventuras.",
+      image: "assets/images/foto5.jpeg"
+    },
+    {
+      id: 6,
+      title: "La magia de Tepoztlán contigo",
+      date: "16 de Agosto, 2026 • 2:00 PM",
+      badge: "Tepoztlán, Pueblo Mágico",
+      description: "Frente al quiosco y las letras de Tepoztlán. Caminar por sus calles empedradas de tu mano me enseñó que la verdadera magia de ese viaje no era el pueblo, eras tú.",
+      image: "assets/images/foto6.jpeg"
     }
   ],
 

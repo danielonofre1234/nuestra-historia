@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400;600;700&family=Great+Vibes&display=swap');
 
 :root {
-  --bg-primary: #0a0710;
-  --bg-secondary: #160f24;
-  --wine-dark: #2a0b22;
-  --wine-accent: #7e1946;
+  --bg-primary: #07040d;
+  --bg-secondary: #12091c;
+  --wine-dark: #23081c;
+  --wine-accent: #8b184b;
+  --wine-glow: #e6236b;
   --rose-gold: #f4c2c2;
-  --rose-bright: #ff6584;
+  --rose-bright: #ff5277;
   --gold-warm: #ecc97b;
+  --gold-sparkle: #ffdf9e;
   --cream: #fbf8f3;
-  --glass-bg: rgba(26, 17, 39, 0.65);
-  --glass-border: rgba(244, 194, 194, 0.18);
+  --glass-bg: rgba(22, 12, 34, 0.72);
+  --glass-border: rgba(244, 194, 194, 0.22);
 }
 
 * {
@@ -22,7 +24,7 @@
 
 body {
   background-color: var(--bg-primary);
-  color: #e9e4f0;
+  color: #eee9f5;
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
   position: relative;
@@ -42,6 +44,10 @@ body {
   font-family: 'Caveat', cursive;
 }
 
+.font-signature {
+  font-family: 'Great Vibes', cursive;
+}
+
 /* Fondo interactivo Canvas */
 #particles-canvas {
   position: fixed;
@@ -53,7 +59,7 @@ body {
   pointer-events: none;
 }
 
-/* Efecto degradado atmosférico */
+/* Efecto degradado atmosférico con animación tipo aurora */
 .ambient-glow {
   position: fixed;
   top: 0;
@@ -61,48 +67,159 @@ body {
   width: 100vw;
   height: 100vh;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(126, 25, 70, 0.22) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(76, 20, 94, 0.25) 0%, transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(10, 7, 16, 0.7) 0%, var(--bg-primary) 100%);
+    radial-gradient(circle at 18% 18%, rgba(180, 24, 85, 0.28) 0%, transparent 45%),
+    radial-gradient(circle at 82% 22%, rgba(115, 20, 140, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(236, 201, 123, 0.12) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(7, 4, 13, 0.8) 0%, var(--bg-primary) 100%);
+  animation: auroraShift 20s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 1;
 }
 
-/* Tarjetas con efecto Glassmorphism */
-.glass-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 20px rgba(244, 194, 194, 0.05);
+@keyframes auroraShift {
+  0% {
+    filter: hue-rotate(0deg) brightness(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: hue-rotate(25deg) brightness(1.15);
+    transform: scale(1.03);
+  }
+  100% {
+    filter: hue-rotate(-20deg) brightness(1.05);
+    transform: scale(1);
+  }
 }
 
-.glass-card-hover {
+/* Luces Colgantes / Fairy Lights */
+.fairy-lights-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: none;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.fairy-wire {
+  position: absolute;
+  top: 10px;
+  left: -2%;
+  width: 104%;
+  height: 25px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%/15px;
+}
+
+.fairy-bulb {
+  width: 11px;
+  height: 16px;
+  border-radius: 50% 50% 40% 40%;
+  background: #fff5cc;
+  box-shadow: 0 0 12px #ffd768, 0 0 25px #ffaa33;
+  margin-top: 18px;
+  animation: bulbGlow 2.4s infinite alternate ease-in-out;
+}
+
+.fairy-bulb:nth-child(2n) {
+  animation-delay: 0.8s;
+  background: #ffd0dc;
+  box-shadow: 0 0 12px #ff7b9c, 0 0 25px #ff3366;
+}
+
+.fairy-bulb:nth-child(3n) {
+  animation-delay: 1.6s;
+  background: #ffffff;
+  box-shadow: 0 0 14px #ffeedd, 0 0 25px #ecc97b;
+}
+
+@keyframes bulbGlow {
+  0% { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 8px #ffdf9e); }
+}
+
+/* Tarjetas con efecto Glassmorphism de lujo */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 
+    0 16px 45px rgba(0, 0, 0, 0.55),
+    0 0 25px rgba(244, 194, 194, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .glass-card-hover:hover {
   transform: translateY(-6px);
-  border-color: rgba(244, 194, 194, 0.35);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 101, 132, 0.2);
+  border-color: rgba(244, 194, 194, 0.45);
+  box-shadow: 
+    0 24px 50px rgba(0, 0, 0, 0.7),
+    0 0 35px rgba(255, 82, 119, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-/* Brillo de vela animada */
+/* Brillo y vela animada */
+.candle-wrapper-rel {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candle-glow-aura {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(255, 179, 71, 0.38) 0%, rgba(255, 82, 119, 0.15) 35%, transparent 70%);
+  border-radius: 50%;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: blur(12px);
+  animation: candleAuraPulse 3s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.candle-glow-aura.off {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.3);
+}
+
+@keyframes candleAuraPulse {
+  0% { transform: translateX(-50%) scale(0.92); opacity: 0.75; }
+  100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+}
+
 .candle-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   user-select: none;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.candle-container:hover {
+  transform: scale(1.05);
 }
 
 .candle-flame {
-  width: 16px;
-  height: 28px;
-  background: radial-gradient(ellipse at bottom, #fff 0%, #ffe382 30%, #ff8b3d 60%, transparent 90%);
+  width: 18px;
+  height: 32px;
+  background: radial-gradient(ellipse at bottom, #fff 0%, #ffe89e 25%, #ff9547 55%, rgba(255, 60, 0, 0.8) 80%, transparent 95%);
   border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-  animation: flicker 1.8s infinite alternate ease-in-out;
-  box-shadow: 0 0 20px #ffb347, 0 0 45px #ff7b00;
+  animation: flicker 1.6s infinite alternate ease-in-out;
+  box-shadow: 0 0 25px #ffb347, 0 0 50px #ff6600, 0 0 80px rgba(255, 120, 0, 0.4);
   transition: all 0.5s ease;
 }
 
@@ -111,37 +228,55 @@ body {
   filter: grayscale(1);
   box-shadow: none;
   animation: none;
+  transform: scale(0.7);
 }
 
 .candle-wick {
-  width: 2px;
-  height: 8px;
-  background-color: #444;
+  width: 2.5px;
+  height: 9px;
+  background-color: #333;
 }
 
 .candle-body {
-  width: 32px;
-  height: 50px;
-  background: linear-gradient(to right, #ece3d4, #ffffff, #dcd2c1);
-  border-radius: 4px 4px 2px 2px;
-  box-shadow: inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+  width: 36px;
+  height: 56px;
+  background: linear-gradient(to right, #e8dfcf, #ffffff, #dcd1be);
+  border-radius: 5px 5px 3px 3px;
+  box-shadow: 
+    inset 0 -5px 8px rgba(0, 0, 0, 0.25),
+    0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes flicker {
-  0% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-  25% { transform: scale(1.08, 0.95) rotate(1deg); opacity: 1; }
-  50% { transform: scale(0.96, 1.05) rotate(-2deg); opacity: 0.88; }
-  75% { transform: scale(1.04, 1) rotate(1.5deg); opacity: 1; }
-  100% { transform: scale(1) rotate(-1deg); opacity: 0.92; }
+  0% { transform: scale(1) rotate(-1.5deg); opacity: 0.95; }
+  25% { transform: scale(1.09, 0.94) rotate(1.5deg); opacity: 1; }
+  50% { transform: scale(0.95, 1.06) rotate(-2deg); opacity: 0.9; }
+  75% { transform: scale(1.05, 0.98) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(-1deg); opacity: 0.93; }
 }
 
-/* Reloj de tiempo */
+/* Reloj de tiempo de lujo */
 .digit-box {
-  background: rgba(14, 9, 23, 0.7);
-  border: 1px solid rgba(244, 194, 194, 0.15);
-  border-radius: 12px;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+  background: rgba(14, 8, 24, 0.82);
+  border: 1px solid rgba(244, 194, 194, 0.18);
+  border-radius: 16px;
+  box-shadow: 
+    inset 0 3px 12px rgba(0, 0, 0, 0.7),
+    0 8px 20px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
   transition: all 0.3s ease;
+}
+
+.digit-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 .pulse-border {
@@ -149,25 +284,30 @@ body {
 }
 
 @keyframes pulseGlow {
-  0% { box-shadow: 0 0 15px rgba(255, 101, 132, 0.2); border-color: rgba(255, 101, 132, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(255, 101, 132, 0.5); border-color: rgba(255, 101, 132, 0.7); }
-  100% { box-shadow: 0 0 15px rgba(255, 101, 132, 0.2); border-color: rgba(255, 101, 132, 0.3); }
+  0% { box-shadow: 0 0 15px rgba(255, 82, 119, 0.2); border-color: rgba(255, 82, 119, 0.3); }
+  50% { box-shadow: 0 0 35px rgba(255, 82, 119, 0.55); border-color: rgba(255, 82, 119, 0.8); }
+  100% { box-shadow: 0 0 15px rgba(255, 82, 119, 0.2); border-color: rgba(255, 82, 119, 0.3); }
 }
 
-/* Polaroids */
+/* Polaroids con efecto fotográfico realista */
 .polaroid-card {
-  background: #fbfbf9;
+  background: #fdfdfc;
   color: #2b2b2b;
-  padding: 12px 12px 30px 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(0,0,0,0.2);
+  padding: 12px 12px 28px 12px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
+  border-radius: 2px;
 }
 
 .polaroid-card:hover {
-  transform: scale(1.05) rotate(0deg) !important;
-  z-index: 10;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(244, 194, 194, 0.4);
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 15;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(244, 194, 194, 0.5);
 }
 
 .tape-effect {
@@ -175,94 +315,146 @@ body {
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90px;
-  height: 24px;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(2px);
-  border: 1px dashed rgba(200, 200, 200, 0.4);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 95px;
+  height: 26px;
+  background: rgba(255, 240, 220, 0.7);
+  backdrop-filter: blur(3px);
+  border: 1px dashed rgba(210, 180, 140, 0.5);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  clip-path: polygon(3% 0%, 97% 0%, 100% 100%, 0% 100%);
 }
 
-/* Carta / Sobre Interactivo */
+/* Carta / Pergamino / Sobre 3D */
 .envelope-wrapper {
   perspective: 1200px;
 }
 
 .wax-seal {
-  background: radial-gradient(circle, #b81736 0%, #75061c 100%);
-  width: 65px;
-  height: 65px;
+  background: radial-gradient(circle at 35% 35%, #d11e42 0%, #880922 70%, #520413 100%);
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -3px 6px rgba(0, 0, 0, 0.6);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(209, 30, 66, 0.5),
+    inset 0 3px 6px rgba(255, 255, 255, 0.4),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.7);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid rgba(255, 215, 0, 0.25);
 }
 
 .wax-seal:hover {
-  transform: scale(1.1) rotate(6deg);
-  box-shadow: 0 8px 24px rgba(184, 23, 54, 0.6), inset 0 2px 6px rgba(255, 255, 255, 0.4);
+  transform: scale(1.15) rotate(8deg);
+  box-shadow: 
+    0 15px 35px rgba(209, 30, 66, 0.7),
+    0 0 30px rgba(255, 215, 0, 0.4),
+    inset 0 3px 8px rgba(255, 255, 255, 0.6);
 }
 
-/* Botones con estilo romántico */
+/* Pergamino elegante de la carta */
+.parchment-card {
+  background: linear-gradient(135deg, #fffbf2 0%, #f7f0e1 100%);
+  color: #2e1a22;
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(236, 201, 123, 0.25),
+    inset 0 0 40px rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  position: relative;
+}
+
+.parchment-card::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed rgba(184, 134, 11, 0.35);
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+/* Botones con estilo romántico de alta gama */
 .btn-romantic-primary {
-  background: linear-gradient(135deg, #a41e54 0%, #681035 100%);
-  border: 1px solid rgba(244, 194, 194, 0.3);
+  background: linear-gradient(135deg, #b81e59 0%, #750f3b 50%, #4e0725 100%);
+  border: 1px solid rgba(244, 194, 194, 0.4);
   color: #fff;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(164, 30, 84, 0.4);
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 
+    0 6px 25px rgba(184, 30, 89, 0.45),
+    0 0 15px rgba(255, 82, 119, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
 
 .btn-romantic-primary:hover {
-  background: linear-gradient(135deg, #c72968 0%, #831543 100%);
-  box-shadow: 0 6px 28px rgba(199, 41, 104, 0.6);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #d8256d 0%, #94134d 50%, #630a32 100%);
+  box-shadow: 
+    0 10px 35px rgba(216, 37, 109, 0.65),
+    0 0 25px rgba(255, 82, 119, 0.4);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .btn-romantic-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(244, 194, 194, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(244, 194, 194, 0.25);
   color: #f4c2c2;
   transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
 }
 
 .btn-romantic-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(244, 194, 194, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(244, 194, 194, 0.6);
   transform: translateY(-2px);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Efecto de texto gradiente suave */
+/* Efecto de texto con brillo resplandeciente animado */
+.text-shimmer {
+  background: linear-gradient(90deg, #ffffff 0%, #ffd4e0 25%, #ecc97b 50%, #ff7b9c 75%, #ffffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 7s linear infinite;
+}
+
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .text-gradient-rose {
   background: linear-gradient(135deg, #fff 15%, #ffd4e0 50%, #ecc97b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Animación de latido suave */
+/* Animación de latido */
 .heart-beat {
-  animation: heartPulse 1.6s infinite ease-in-out;
+  animation: heartPulse 1.5s infinite ease-in-out;
 }
 
 @keyframes heartPulse {
   0% { transform: scale(1); }
-  14% { transform: scale(1.14); }
+  14% { transform: scale(1.16); }
   28% { transform: scale(1); }
-  42% { transform: scale(1.1); }
+  42% { transform: scale(1.12); }
   70% { transform: scale(1); }
 }
 
-/* Animación suave para la entrada de la carta */
+/* Despliegue de carta */
 .letter-unfold {
-  animation: unfoldLetter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: unfoldLetter 0.9s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes unfoldLetter {
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(50px) scale(0.92);
   }
   100% {
     opacity: 1;
@@ -280,19 +472,85 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Radar pulsante en WhatsApp */
+.pulse-radar {
+  position: relative;
+}
+
+.pulse-radar::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: radarPulse 2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes radarPulse {
+  0% { transform: scale(0.95); opacity: 1; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+
+/* Corazones flotantes al hacer clic en pantalla */
+.click-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  user-select: none;
+  font-size: 22px;
+  animation: floatHeartUp 1.6s ease-out forwards;
+}
+
+@keyframes floatHeartUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+  }
+  25% {
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 35px)) scale(1.25) rotate(var(--rot, 15deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 120px)) scale(0.8) rotate(var(--rot, 30deg));
+  }
+}
+
+/* Lluvia de confeti / abrazo virtual */
+.screen-confetti-heart {
+  position: fixed;
+  top: -35px;
+  z-index: 99999;
+  pointer-events: none;
+  animation: fallDown 3.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fallDown {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.6);
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(105vh) rotate(420deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
 /* Scrollbar personalizado romántico */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 9px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #480f33;
-  border-radius: 4px;
-  border: 1px solid rgba(244, 194, 194, 0.2);
+  background: linear-gradient(180deg, #681035, #a41e54);
+  border-radius: 5px;
+  border: 1px solid rgba(244, 194, 194, 0.25);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7e1946;
+  background: linear-gradient(180deg, #881545, #c72968);
 }
-
