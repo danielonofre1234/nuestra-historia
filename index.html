@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestra Historia</title>
+  
+  <!-- Tipografías de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: {
+              950: '#0a0710',
+              900: '#160f24',
+              800: '#2a0b22',
+              700: '#480f33',
+              600: '#681035',
+              500: '#7e1946',
+              400: '#a41e54',
+            },
+            rose: {
+              gold: '#f4c2c2',
+              soft: '#ffd4e0',
+              bright: '#ff6584',
+            },
+            gold: {
+              warm: '#ecc97b',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            playfair: ['"Playfair Display"', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+            handwriting: ['"Caveat"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Estilos Personalizados del Proyecto -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="bg-[#0a0710] text-[#e9e4f0] font-sans antialiased selection:bg-rose-500/30 selection:text-white">
+
+  <!-- Elemento de Audio en segundo plano -->
+  <audio id="bg-audio" loop preload="auto"></audio>
+
+  <!-- Fondo interactivo de destellos y partículas -->
+  <canvas id="particles-canvas"></canvas>
+  <div class="ambient-glow"></div>
+
+  <!-- Barra de navegación y Reproductor flotante superior -->
+  <header class="fixed top-0 left-0 right-0 z-40 px-4 py-3 sm:px-8 flex items-center justify-between pointer-events-none">
+    
+    <!-- Monograma / Badge de bienvenida -->
+    <div class="pointer-events-auto glass-card px-4 py-2 rounded-full flex items-center gap-2 border border-rose-200/20 shadow-lg backdrop-blur-md">
+      <i class="fa-solid fa-heart text-rose-400 text-sm heart-beat"></i>
+      <span class="text-xs uppercase tracking-widest font-medium text-rose-100">
+        Nuestra Historia • <span class="js-partner-name text-rose-300 font-semibold">Tú</span>
+      </span>
+    </div>
+
+    <!-- Mini Reproductor de Música Flotante -->
+    <div class="pointer-events-auto glass-card px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full flex items-center gap-3 border border-rose-200/20 shadow-lg backdrop-blur-md">
+      <!-- Icono de disco -->
+      <div id="music-disc" class="w-7 h-7 rounded-full bg-gradient-to-tr from-rose-950 to-rose-600 border border-gold-warm/40 flex items-center justify-center shadow-inner">
+        <div class="w-2 h-2 rounded-full bg-wine-950 border border-gold-warm/60"></div>
+      </div>
+      
+      <!-- Información del tema -->
+      <div class="text-left hidden md:block max-w-[130px] overflow-hidden">
+        <p id="music-track-title" class="text-xs font-medium text-gray-200 truncate leading-tight">Nuestra Canción</p>
+        <p id="music-track-artist" class="text-[10px] text-rose-300/80 truncate leading-tight">Piano Romántico</p>
+      </div>
+
+      <!-- Botón Play/Pause -->
+      <button id="music-toggle-btn" class="w-8 h-8 rounded-full bg-rose-900/60 hover:bg-rose-800 border border-rose-300/30 flex items-center justify-center transition-all duration-300 hover:scale-105" title="Reproducir / Pausar Música">
+        <i id="music-play-icon" class="fa-solid fa-play text-xs text-rose-200 ml-0.5"></i>
+        <i id="music-pause-icon" class="fa-solid fa-pause text-xs text-rose-200 hidden"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-20 space-y-28">
+
+    <!-- SECCIÓN 1: PORTADA & HERO -->
+    <section class="min-h-[75vh] flex flex-col items-center justify-center text-center pt-8">
+      
+      <!-- Insignia superior -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-wine-800/40 border border-rose-300/20 text-rose-200/90 text-xs tracking-widest uppercase mb-6 shadow-sm">
+        <i class="fa-regular fa-compass text-rose-300"></i>
+        <span>Un espacio reservado en el tiempo</span>
+      </div>
+
+      <!-- Título principal editorial -->
+      <h1 class="font-serif-title text-4xl sm:text-6xl md:text-7xl font-light text-gradient-rose tracking-wide leading-tight max-w-4xl mb-4">
+        El tiempo no se borra, <br class="hidden sm:inline"/>solo espera por nosotros.
+      </h1>
+
+      <!-- Dedicatoria -->
+      <p class="font-handwritten text-2xl sm:text-3xl text-rose-200/90 mb-10 tracking-wide">
+        De <span class="js-your-name text-gold-warm font-semibold">Yo</span> para <span class="js-partner-name text-rose-300 font-semibold">Tú</span>
+      </p>
+
+      <!-- La Vela Interactiva -->
+      <div class="candle-container group mt-2" id="interactive-candle" title="Haz clic para apagar o encender">
+        <div id="candle-flame" class="candle-flame"></div>
+        <div class="candle-wick"></div>
+        <div class="candle-body"></div>
+        <p id="candle-status-text" class="text-xs text-rose-200/60 mt-4 tracking-wider uppercase font-light group-hover:text-rose-200 transition-colors">
+          Haz clic en la vela para apagar la llama
+        </p>
+      </div>
+
+      <!-- Flecha de desplazamiento suave -->
+      <a href="#reloj-section" class="mt-14 text-rose-300/50 hover:text-rose-200 transition-colors duration-300 animate-bounce">
+        <i class="fa-solid fa-chevron-down text-lg"></i>
+      </a>
+    </section>
+
+
+    <!-- SECCIÓN 2: EL RELOJ DE NUESTRO TIEMPO -->
+    <section id="reloj-section" class="scroll-mt-20">
+      <div id="clock-container" class="glass-card glass-card-hover rounded-3xl p-6 sm:p-10 md:p-12 relative overflow-hidden transition-all duration-500 border border-rose-200/20">
+        
+        <!-- Luz de fondo sutil del reloj -->
+        <div class="absolute -top-24 -right-24 w-72 h-72 bg-rose-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-wine-600/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <div id="timer-status-badge" class="mb-4">
+            <!-- Inyectado por JS -->
+          </div>
+          <h2 class="font-serif-title text-3xl sm:text-4xl text-gray-100 font-bold tracking-wide mb-3">
+            Nuestro Reloj Compartido
+          </h2>
+          <p id="timer-description" class="text-gray-300 text-sm sm:text-base font-light leading-relaxed">
+            <!-- Inyectado por JS -->
+          </p>
+        </div>
+
+        <!-- Cajas de Dígitos -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto my-8">
+          
+          <!-- Días -->
+          <div class="digit-box p-4 sm:p-6 text-center">
+            <span id="timer-days" class="block font-serif-title text-4xl sm:text-6xl text-gold-warm font-bold tracking-tight">000</span>
+            <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rose-300/80 font-medium mt-1 block">Días</span>
+          </div>
+
+          <!-- Horas -->
+          <div class="digit-box p-4 sm:p-6 text-center">
+            <span id="timer-hours" class="block font-serif-title text-4xl sm:text-6xl text-gray-100 font-bold tracking-tight">00</span>
+            <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rose-300/80 font-medium mt-1 block">Horas</span>
+          </div>
+
+          <!-- Minutos -->
+          <div class="digit-box p-4 sm:p-6 text-center">
+            <span id="timer-minutes" class="block font-serif-title text-4xl sm:text-6xl text-gray-100 font-bold tracking-tight">00</span>
+            <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rose-300/80 font-medium mt-1 block">Minutos</span>
+          </div>
+
+          <!-- Segundos -->
+          <div class="digit-box p-4 sm:p-6 text-center">
+            <span id="timer-seconds" class="block font-serif-title text-4xl sm:text-6xl text-rose-400 font-bold tracking-tight">00</span>
+            <span class="text-[11px] sm:text-xs uppercase tracking-widest text-rose-300/80 font-medium mt-1 block">Segundos</span>
+          </div>
+        </div>
+
+        <!-- Botón interactivo de simulación / reanudación -->
+        <div class="text-center mt-8">
+          <button id="toggle-resume-btn" class="btn-romantic-secondary px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium inline-flex items-center gap-2 group">
+            <i class="fa-solid fa-rotate text-xs text-rose-400 group-hover:rotate-180 transition-transform duration-500"></i>
+            <span id="resume-btn-text">¿Y si dejamos que vuelva a correr?</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECCIÓN 3: LA CARTA CON SELLO DE CERA -->
+    <section id="carta-section" class="scroll-mt-20">
+      
+      <!-- Título de la sección -->
+      <div class="text-center mb-10">
+        <span class="text-xs uppercase tracking-widest text-rose-300 font-medium block mb-2">Lo que las palabras a veces callan</span>
+        <h2 class="font-serif-title text-3xl sm:text-5xl text-gray-100 font-bold tracking-wide">
+          Una Carta para Ti
+        </h2>
+      </div>
+
+      <div class="envelope-wrapper max-w-2xl mx-auto">
+        
+        <!-- Estado 1: Sobre cerrado con Sello de Cera -->
+        <div id="sealed-cover" class="glass-card rounded-3xl p-10 sm:p-14 text-center border border-rose-300/20 relative shadow-2xl overflow-hidden">
+          
+          <div class="absolute inset-0 bg-gradient-to-b from-rose-950/20 via-transparent to-black/40 pointer-events-none"></div>
+
+          <p id="letter-preview" class="text-gray-300 italic text-base sm:text-lg mb-8 max-w-lg mx-auto font-light leading-relaxed">
+            <!-- Inyectado por JS desde CONFIG.letter.previewText -->
+          </p>
+
+          <!-- El Sello de Cera -->
+          <div class="flex flex-col items-center justify-center my-4">
+            <div id="wax-seal-btn" class="wax-seal" title="Haz clic para romper el sello y abrir la carta">
+              <i class="fa-solid fa-heart text-gold-warm text-2xl drop-shadow"></i>
+            </div>
+            <span class="text-xs uppercase tracking-widest text-rose-300/80 font-semibold mt-4 block">
+              Haz clic en el sello para abrir
+            </span>
+          </div>
+
+          <p class="text-[11px] text-gray-400 mt-6 tracking-wide">
+            Sellado con respeto, cariño y sinceridad.
+          </p>
+        </div>
+
+        <!-- Estado 2: Carta Desplegada (Oculta al inicio) -->
+        <div id="unfolded-letter" class="hidden bg-[#150f22]/95 border border-rose-300/30 rounded-3xl p-8 sm:p-12 md:p-14 shadow-2xl relative">
+          
+          <!-- Detalle decorativo superior de la carta -->
+          <div class="flex items-center justify-center gap-3 text-rose-300/60 mb-6">
+            <span class="w-12 h-px bg-rose-400/30"></span>
+            <i class="fa-solid fa-feather-pointed text-base text-rose-300"></i>
+            <span class="w-12 h-px bg-rose-400/30"></span>
+          </div>
+
+          <h3 id="letter-title" class="font-serif-title text-2xl sm:text-3xl text-gradient-rose font-bold text-center mb-8">
+            <!-- Inyectado por JS -->
+          </h3>
+
+          <!-- Contenido de párrafos -->
+          <div id="letter-paragraphs" class="space-y-4 mb-8 font-sans">
+            <!-- Inyectado por JS -->
+          </div>
+
+          <!-- Despedida y Firma -->
+          <div class="mt-8 pt-6 border-t border-rose-300/15 text-right">
+            <p id="letter-closing" class="font-handwritten text-2xl text-rose-200">
+              <!-- Inyectado por JS -->
+            </p>
+            <p class="font-serif-title text-xl text-gold-warm font-semibold mt-1">
+              <span class="js-your-name">Yo</span>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SECCIÓN 4: GALERÍA DE MEMORIAS (POLAROIDS) -->
+    <section id="recuerdos-section" class="scroll-mt-20">
+      
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase tracking-widest text-rose-300 font-medium block mb-2">Instantes que no pierden su color</span>
+        <h2 class="font-serif-title text-3xl sm:text-5xl text-gray-100 font-bold tracking-wide mb-3">
+          Nuestras Huellas
+        </h2>
+        <p class="text-gray-400 text-sm max-w-lg mx-auto font-light">
+          Cada fotografía guarda una risa, un abrazo y una razón por la que valió la pena coincidir.
+        </p>
+      </div>
+
+      <!-- Cuadrícula dinámica de Polaroids -->
+      <div id="polaroids-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 pt-4 pb-8">
+        <!-- Inyectadas por JS -->
+      </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 5: RAZONES POR LAS QUE VALES LA PENA -->
+    <section id="razones-section" class="scroll-mt-20 max-w-3xl mx-auto">
+      
+      <div class="text-center mb-10">
+        <span class="text-xs uppercase tracking-widest text-rose-300 font-medium block mb-2">Lo que llevo en el corazón</span>
+        <h2 class="font-serif-title text-3xl sm:text-5xl text-gray-100 font-bold tracking-wide">
+          Por Qué Tú
+        </h2>
+      </div>
+
+      <!-- Lista de Razones -->
+      <div id="reasons-container" class="space-y-4">
+        <!-- Inyectadas por JS -->
+      </div>
+
+    </section>
+
+
+    <!-- SECCIÓN 6: CIERRE & RESPUESTA (WHATSAPP CTA) -->
+    <section class="text-center max-w-2xl mx-auto pt-10">
+      <div class="glass-card rounded-3xl p-8 sm:p-12 border border-rose-300/20 relative overflow-hidden">
+        
+        <div class="w-14 h-14 mx-auto rounded-full bg-rose-950/70 border border-rose-400/30 flex items-center justify-center text-rose-300 text-2xl mb-6">
+          <i class="fa-solid fa-heart-pulse heart-beat"></i>
+        </div>
+
+        <h3 class="font-serif-title text-3xl sm:text-4xl text-gray-100 font-bold mb-4">
+          La decisión siempre será tuya
+        </h3>
+        
+        <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-8 font-light">
+          No hay presiones, solo sinceridad. Si sientes que aún tenemos páginas por escribir, estaré feliz de escucharte. Y si no, me quedo con la gratitud de haber compartido parte del camino contigo.
+        </p>
+
+        <!-- Botones de Acción -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a id="whatsapp-cta-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-romantic-primary px-8 py-3.5 rounded-full text-sm font-semibold inline-flex items-center gap-2.5 w-full sm:w-auto justify-center">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Platiquemos un momento</span>
+          </a>
+
+          <a href="#carta-section" class="btn-romantic-secondary px-6 py-3.5 rounded-full text-sm font-medium inline-flex items-center gap-2 w-full sm:w-auto justify-center">
+            <i class="fa-solid fa-arrow-up text-xs"></i>
+            <span>Volver a leer la carta</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- MODAL LIGHTBOX PARA RECUERDOS EN GRANDE -->
+  <div id="image-lightbox" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative max-w-2xl w-full bg-[#120a1c] border border-rose-300/30 rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-6">
+      
+      <!-- Botón de Cerrar -->
+      <button id="lightbox-close-btn" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-gray-300 hover:text-white flex items-center justify-center text-lg z-10 transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="rounded-xl overflow-hidden max-h-[60vh] bg-black flex items-center justify-center mb-4">
+        <img id="lightbox-img" src="" alt="" class="max-h-[60vh] w-auto object-contain">
+      </div>
+
+      <div class="text-center">
+        <span id="lightbox-date" class="text-xs uppercase tracking-widest text-rose-300 font-semibold block mb-1"></span>
+        <h4 id="lightbox-title" class="font-serif-title text-2xl text-white font-bold mb-2"></h4>
+        <p id="lightbox-desc" class="font-handwritten text-xl text-rose-100/90 leading-snug"></p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 border-t border-rose-300/10 py-8 text-center text-xs text-gray-400 font-light">
+    <div class="max-w-4xl mx-auto px-4 space-y-2">
+      <p>
+        Creado con amor por <span class="js-your-name text-rose-300">Yo</span> para <span class="js-partner-name text-rose-300">Tú</span>
+      </p>
+      <p class="text-gray-500">
+        © <span id="current-year"></span> • Nuestra Historia
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
